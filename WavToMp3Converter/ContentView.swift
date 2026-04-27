@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var progressText = ""
     @State private var errorMessage: String?
     @State private var showError = false
+    @State private var selectedQuality: LameQuality = .standard
 
     private let nekoColor = Color(red: 82/255.0, green: 134/255.0, blue: 233/255.0)
     private let nekoLightColor = Color(red: 105/255.0, green: 210/255.0, blue: 231/255.0)
@@ -102,6 +103,21 @@ struct ContentView: View {
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 10)
+                            
+                            VStack(spacing: 8) {
+                                Text("Conversion Quality")
+                                    .font(.caption.bold())
+                                    .foregroundColor(.secondary)
+                                
+                                Picker("Quality", selection: $selectedQuality) {
+                                    Text("Fast (Low)").tag(LameQuality.ok)
+                                    Text("Standard").tag(LameQuality.standard)
+                                    Text("High (Slow)").tag(LameQuality.best)
+                                }
+                                .pickerStyle(.segmented)
+                                .padding(.horizontal, 10)
+                            }
+                            .padding(.top, 10)
                         }
                         .frame(maxWidth: .infinity, minHeight: 120)
                     }
@@ -203,7 +219,7 @@ struct ContentView: View {
                 configuration: .init(
                     sampleRate: .custom(44100),
                     bitrateMode: .constant(320),
-                    quality: .standard
+                    quality: selectedQuality
                 ),
                 destinationUrl: destinationURL,
                 progress: progress
