@@ -203,7 +203,7 @@ struct ContentView: View {
                 configuration: .init(
                     sampleRate: .custom(44100),
                     bitrateMode: .constant(320),
-                    quality: .best
+                    quality: .standard
                 ),
                 destinationUrl: destinationURL,
                 progress: progress
