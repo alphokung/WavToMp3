@@ -13,96 +13,141 @@ struct ContentView: View {
     @State private var showError = false
 
     private let nekoColor = Color(red: 82/255.0, green: 134/255.0, blue: 233/255.0)
+    private let nekoLightColor = Color(red: 105/255.0, green: 210/255.0, blue: 231/255.0)
 
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 30) {
-                // Header Icon
+        ZStack {
+            // Background Glow Gradient
+            LinearGradient(
+                colors: [nekoColor, nekoLightColor],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+            
+            VStack(spacing: 20) {
+                // Header Logo
                 Image("Logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 120)
-                    .padding(.top, 40)
+                    .frame(height: 180)
+                    .padding(.top, 30)
+                    .shadow(color: .white.opacity(0.3), radius: 20, x: 0, y: 0)
                 
-                Text("Neko Converter")
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundColor(.primary)
-                
-                Text("Convert your high-fidelity .wav files into compressed .mp3 files effortlessly.")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 30)
-                
-                Spacer()
-                
-                // Status / Export Area
-                if isConverting {
-                    VStack(spacing: 15) {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: nekoColor))
-                            .scaleEffect(1.5)
-                        Text(progressText)
-                            .font(.headline)
-                            .foregroundColor(.secondary)
-                    }
-                } else if let mp3URL = outputURL {
-                    VStack(spacing: 20) {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 50))
-                            .foregroundColor(.green)
-                        
-                        Text("Conversion Complete!")
-                            .font(.headline)
-                        
-                        ShareLink(item: mp3URL) {
-                            Label("Export MP3", systemImage: "square.and.arrow.up")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.green)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(radius: 5)
-                        }
-                        .padding(.horizontal, 40)
-                    }
-                }
-                
-                Spacer()
-                
-                // Select File Button
-                Button(action: {
-                    isImporting = true
-                    outputURL = nil
-                }) {
-                    Text("Meow Wav File to Convert")
-                        .font(.headline)
+                // Title Area
+                VStack(spacing: 8) {
+                    Text("NEKO CONVERTER")
+                        .font(.system(size: 34, weight: .heavy, design: .default))
                         .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(nekoColor)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(color: nekoColor.opacity(0.3), radius: 10, x: 0, y: 5)
+                        .shadow(color: .black.opacity(0.15), radius: 3, x: 0, y: 3)
+                    
+                    Text("The wave to mp3 converter app")
+                        .font(.system(size: 18, weight: .semibold, design: .default))
+                        .foregroundColor(.white)
+                        .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 2)
                 }
-                .padding(.horizontal, 40)
-                .padding(.bottom, 40)
-                .disabled(isConverting)
-                .opacity(isConverting ? 0.5 : 1.0)
+                
+                Spacer()
+                
+                // Material Design Card Surface
+                VStack(spacing: 30) {
+                    // Status / Export Area
+                    if isConverting {
+                        VStack(spacing: 20) {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: nekoColor))
+                                .scaleEffect(1.8)
+                            Text(progressText)
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 120)
+                    } else if let mp3URL = outputURL {
+                        VStack(spacing: 20) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 60))
+                                .foregroundColor(.green)
+                            
+                            Text("Conversion Complete!")
+                                .font(.title3.bold())
+                                .foregroundColor(.primary)
+                            
+                            ShareLink(item: mp3URL) {
+                                Label("Export MP3", systemImage: "square.and.arrow.up")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 16)
+                                    .background(Color.green)
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                    .shadow(color: .green.opacity(0.4), radius: 8, x: 0, y: 4)
+                            }
+                            .padding(.horizontal, 10)
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 120)
+                    } else {
+                        // Empty State Outline
+                        VStack(spacing: 12) {
+                            Image(systemName: "music.note.list")
+                                .font(.system(size: 50))
+                                .foregroundColor(nekoColor.opacity(0.5))
+                                .padding(.bottom, 8)
+                            
+                            Text("Ready to Convert")
+                                .font(.title3.bold())
+                                .foregroundColor(.primary)
+                            
+                            Text("Select a high-fidelity .wav file from your device to begin the offline conversion.")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 10)
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 120)
+                    }
+                    
+                    // Material Action Button
+                    Button(action: {
+                        isImporting = true
+                        outputURL = nil
+                    }) {
+                        Text("MEOW WAV FILE TO CONVERT")
+                            .font(.system(size: 16, weight: .bold)) // Material Typography
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 18)
+                            .background(nekoColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 30))
+                            .shadow(color: nekoColor.opacity(0.5), radius: 10, x: 0, y: 5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 30)
+                                    .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                            )
+                    }
+                    .disabled(isConverting)
+                    .opacity(isConverting ? 0.5 : 1.0)
+                }
+                .padding(30)
+                .background(
+                    RoundedRectangle(cornerRadius: 24) // Material Surface
+                        .fill(Color(UIColor.systemBackground))
+                        .shadow(color: .black.opacity(0.15), radius: 25, x: 0, y: 15)
+                )
+                .padding(.horizontal, 20)
+                .padding(.bottom, 30)
             }
-            .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
-            .fileImporter(
-                isPresented: $isImporting,
-                allowedContentTypes: [.wav],
-                allowsMultipleSelection: false
-            ) { result in
-                handleFileSelection(result: result)
-            }
-            .alert("Error", isPresented: $showError, presenting: errorMessage) { _ in
-                Button("OK", role: .cancel) { }
-            } message: { msg in
-                Text(msg)
-            }
+        }
+        .fileImporter(
+            isPresented: $isImporting,
+            allowedContentTypes: [.wav],
+            allowsMultipleSelection: false
+        ) { result in
+            handleFileSelection(result: result)
+        }
+        .alert("Error", isPresented: $showError, presenting: errorMessage) { _ in
+            Button("OK", role: .cancel) { }
+        } message: { msg in
+            Text(msg)
         }
     }
     
