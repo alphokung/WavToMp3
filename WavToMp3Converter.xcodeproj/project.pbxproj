@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		926770562F9F497E007C3D35 /* SwiftLAME in Frameworks */ = {isa = PBXBuildFile; productRef = 926770552F9F497E007C3D35 /* SwiftLAME */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		926770462F9F471B007C3D35 /* WavToMp3Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WavToMp3Converter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				926770562F9F497E007C3D35 /* SwiftLAME in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = WavToMp3Converter;
 			packageProductDependencies = (
+				926770552F9F497E007C3D35 /* SwiftLAME */,
 			);
 			productName = WavToMp3Converter;
 			productReference = 926770462F9F471B007C3D35 /* WavToMp3Converter.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 9267703D2F9F471B007C3D35;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				926770542F9F497E007C3D35 /* XCRemoteSwiftPackageReference "swiftlame" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 926770472F9F471B007C3D35 /* Products */;
 			projectDirPath = "";
@@ -266,6 +275,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = zeroone.WavToMp3Converter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -297,6 +310,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = zeroone.WavToMp3Converter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -328,6 +345,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		926770542F9F497E007C3D35 /* XCRemoteSwiftPackageReference "swiftlame" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hidden-spectrum/swiftlame";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		926770552F9F497E007C3D35 /* SwiftLAME */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926770542F9F497E007C3D35 /* XCRemoteSwiftPackageReference "swiftlame" */;
+			productName = SwiftLAME;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9267703E2F9F471B007C3D35 /* Project object */;
 }
