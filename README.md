@@ -1,4 +1,4 @@
-# WavToMp3 Converter for iOS
+# Neko Converter (iOS)
 
 A modern, native iOS application built with SwiftUI that allows users to quickly convert high-fidelity `.wav` audio files into compressed `.mp3` format directly on their device. 
 
@@ -29,7 +29,7 @@ Since Apple's `AVFoundation` doesn't natively support MP3 encoding (only decodin
 
 ## How to Use
 1. Launch the app to view the main dashboard.
-2. Tap the **"Select WAV File"** button.
+2. Tap the **"Meow Wav File to Convert"** button.
 3. Browse and select a document within the Files app that ends in `.wav`.
 4. Wait for the conversion process to complete. You will see a real-time progress indicator.
 5. Tap **"Export MP3"** to save or share your optimized audio file!

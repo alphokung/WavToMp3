@@ -12,27 +12,19 @@ struct ContentView: View {
     @State private var errorMessage: String?
     @State private var showError = false
 
+    private let nekoColor = Color(red: 82/255.0, green: 134/255.0, blue: 233/255.0)
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 30) {
                 // Header Icon
-                ZStack {
-                    Circle()
-                        .fill(
-                            LinearGradient(colors: [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
-                        )
-                        .frame(width: 120, height: 120)
-                        .shadow(color: .purple.opacity(0.5), radius: 10, x: 0, y: 5)
-                    
-                    Image(systemName: "waveform")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 60)
-                        .foregroundColor(.white)
-                }
-                .padding(.top, 40)
+                Image("Logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 120)
+                    .padding(.top, 40)
                 
-                Text("WAV to MP3 Converter")
+                Text("Neko Converter")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(.primary)
                 
@@ -48,7 +40,7 @@ struct ContentView: View {
                 if isConverting {
                     VStack(spacing: 15) {
                         ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .purple))
+                            .progressViewStyle(CircularProgressViewStyle(tint: nekoColor))
                             .scaleEffect(1.5)
                         Text(progressText)
                             .font(.headline)
@@ -84,16 +76,14 @@ struct ContentView: View {
                     isImporting = true
                     outputURL = nil
                 }) {
-                    Text("Select WAV File")
+                    Text("Meow Wav File to Convert")
                         .font(.headline)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(
-                            LinearGradient(colors: [.blue, .purple], startPoint: .leading, endPoint: .trailing)
-                        )
+                        .background(nekoColor)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(color: .blue.opacity(0.3), radius: 10, x: 0, y: 5)
+                        .shadow(color: nekoColor.opacity(0.3), radius: 10, x: 0, y: 5)
                 }
                 .padding(.horizontal, 40)
                 .padding(.bottom, 40)
